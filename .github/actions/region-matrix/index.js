@@ -10,10 +10,9 @@ try {
     if (env) {
       const regions = env.regions;
       if (regions) {
-        core.setOutput(
-          'matrix',
-          JSON.stringify({ region: Object.keys(regions) }),
-        );
+        const jsont = JSON.stringify({ region: Object.keys(regions) });
+        console.log(jsont);
+        core.setOutput('matrix', jsont);
       }
     }
   }
