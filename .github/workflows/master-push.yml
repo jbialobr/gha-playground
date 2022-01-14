@@ -37,6 +37,7 @@ jobs:
         with:
           environment: ${{ env.ENVIRONMENT }}
           env-config-file: ./src/env.json
+  
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
