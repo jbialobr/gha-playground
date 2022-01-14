@@ -1,0 +1,12 @@
+name: 'Get region matrix'
+description: 'basend on env.json'
+inputs:
+  environment:
+    description: 'env'
+    required: true
+  env-config-file:
+    description: 'env.json path'
+    required: true
+runs:
+  using: 'node16'
+  main: 'index.js'
