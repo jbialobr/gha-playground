@@ -28,3 +28,12 @@ jobs:
           db-password: ${{ secrets.DB_PASS }}
           node-version: ${{ env.NODE_VERSION }}
           env: ${{ env.ENVIRONMENT }}
+
+      - name: Set the value
+        id: step_one
+        run: |
+          echo "action_state=yellow" >> $GITHUB_ENV
+      - name: Use the value
+        id: step_two
+        run: |
+          echo "${{ env.action_state }}"
