@@ -37,38 +37,3 @@ jobs:
         with:
           environment: ${{ env.ENVIRONMENT }}
           env-config-file: ./src/env.json
-  
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    needs:
-      - init
-    strategy:
-      matrix: ${{ fromJSON(needs.input.steps.matrix.outputs.matrix) }}
-      fail-fast: false
-     env:
-      REGION: ${{ matrix.region }}
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - uses: ./.github/actions/install
-        with:
-          db-password: ${{ secrets.DB_PASS }}
-          node-version: ${{ env.NODE_VERSION }}
-          env: ${{ env.ENVIRONMENT }}
-
-      - uses: ./.github/actions/output-vars
-        with:
-          environment: ${{ env.ENVIRONMENT }}
-          env-config-file: ./src/env.json
-
-      - name: Use the value
-        id: step_two
-        run: |
-          echo "${{ env.ACCOUNT_ID }}"
-
-      - name: Print env
-        id: print
-        run: env
