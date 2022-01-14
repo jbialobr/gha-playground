@@ -3,7 +3,7 @@ const core = require('@actions/core');
 try {
   const environment = core.getInput('environment');
   const envCfgFile = core.getInput('env-config-file');
-  const config = require(envCfgFile);
+  const config = require('./../../../' + envCfgFile);
   const vars = {};
   if (config) {
     Object.assign(vars, config.vars);

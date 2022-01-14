@@ -30,6 +30,7 @@ jobs:
           env: ${{ env.ENVIRONMENT }}
 
       - uses: ./.github/actions/output-vars
+        working-directory: .
         with:
           environment: ${{ env.ENVIRONMENT }}
           env-config-file: ./src/env.jsno
@@ -38,3 +39,7 @@ jobs:
         id: step_two
         run: |
           echo "${{ env.ACCOUNT_ID }}"
+
+      - name: Print env
+        id: print
+        run: env
