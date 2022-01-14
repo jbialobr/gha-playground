@@ -21,3 +21,23 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+
+      - uses: ./.github/actions/install
+        with:
+          db-password: ${{ secrets.DB_PASS }}
+          node-version: ${{ env.NODE_VERSION }}
+          env: ${{ env.ENVIRONMENT }}
+
+      - uses: ./.github/actions/output-vars
+        with:
+          environment: ${{ env.ENVIRONMENT }}
+          env-config-file: ./src/env.json
+
+      - name: Use the value
+        id: step_two
+        run: |
+          echo "${{ env.ACCOUNT_ID }}"
+
+      - name: Print env
+        id: print
+        run: env
