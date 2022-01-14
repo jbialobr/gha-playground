@@ -18,6 +18,8 @@ jobs:
     name: Init actions
     runs-on: ubuntu-latest
     timeout-minutes: 1
+    outputs:
+      - matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -45,7 +47,7 @@ jobs:
     needs:
       - init
     strategy:
-      matrix: ${{ fromJSON(needs.init.steps.matrix.outputs.matrix) }}
+      matrix: ${{ fromJSON(needs.init.outputs.matrix) }}
       fail-fast: false
     env:
       REGION: ${{ matrix.region }}
