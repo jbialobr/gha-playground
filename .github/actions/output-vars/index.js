@@ -5,7 +5,8 @@ try {
   const environment = core.getInput('environment');
   const envCfgFile = core.getInput('env-config-file');
   console.log('Working directory: ' + process.cwd());
-  const config = require(envCfgFile);
+  const config = JSON.parse(fs.readFileSync(envCfgFile));
+  console.log(config);
   const vars = {};
   if (config) {
     Object.assign(vars, config.vars);
