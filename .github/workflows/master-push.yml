@@ -30,10 +30,9 @@ jobs:
           env: ${{ env.ENVIRONMENT }}
 
       - uses: ./.github/actions/output-vars
-        working-directory: .
         with:
           environment: ${{ env.ENVIRONMENT }}
-          env-config-file: ./src/env.jsno
+          env-config-file: src/env.jsno
 
       - name: Use the value
         id: step_two
