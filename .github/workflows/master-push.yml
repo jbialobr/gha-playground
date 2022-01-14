@@ -28,10 +28,11 @@ jobs:
           db-password: ${{ secrets.DB_PASS }}
           node-version: ${{ env.NODE_VERSION }}
           env: ${{ env.ENVIRONMENT }}
+          env-config-file: ./src/env.jsno
 
-      - uses: ./.github/actions/setup-env
-        env:
-          INPUT_ENV: ${{ env.ENVIRONMENT }}
+      - uses: ./.github/actions/output-vars
+        with:
+          environment: ${{ env.ENVIRONMENT }}
 
       - name: Use the value
         id: step_two
