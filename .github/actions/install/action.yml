@@ -1,33 +1,33 @@
 name: 'Install, lint and test'
 description: 'Install package with npm and run linter'
 inputs:
-    db-password:
-        required: true
-        type: string
-    node-version:
-        type: string
-        default: '14.x'
-    run-test:
-        type: boolean
-        default: true
-    env:
-        type: string
-        required: true
+  db-password:
+    required: true
+    type: string
+  node-version:
+    type: string
+    default: '14.x'
+  run-test:
+    type: boolean
+    default: true
+  env:
+    type: string
+    required: true
 
 runs:
-    using: 'composite'
-    steps:
-        - name: Setup node with dependency caching
-          uses: actions/setup-node@v2
-          with:
-              node-version: ${{ inputs.node-version }}
+  using: 'composite'
+  steps:
+    - name: Setup node with dependency caching
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ inputs.node-version }}
 
-        - name: Install dev node modules
-          run: yarn
-          shell: bash
+    - name: Install dev node modules
+      run: yarn
+      shell: bash
 
-        - name: Run test
-          working-directory: ${{ inputs.lambda-dir }}
-          if: ${{ inputs.run-test }}
-          run: yarn test
-          shell: bash
+    - name: Run test
+      working-directory: ${{ inputs.lambda-dir }}
+      if: ${{ inputs.run-test }}
+      run: yarn test
+      shell: bash
