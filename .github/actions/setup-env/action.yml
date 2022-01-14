@@ -12,4 +12,4 @@ runs:
       id: step_one
       shell: bash
       run: |
-        echo "action_state=yellow" >> $GITHUB_ENV
+        echo "action_state=${{ inputs.env }}" >> $GITHUB_ENV
