@@ -36,4 +36,5 @@ runs:
       run: yarn test
       env:
         DB_PASS: ${{ inputs.db-password }}
+        USER: 123
       shell: bash
