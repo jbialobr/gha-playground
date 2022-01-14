@@ -32,7 +32,7 @@ jobs:
       - uses: ./.github/actions/output-vars
         with:
           environment: ${{ env.ENVIRONMENT }}
-          env-config-file: src/env.json
+          env-config-file: ./src/env.json
 
       - name: Use the value
         id: step_two

@@ -1,8 +1,10 @@
 const core = require('@actions/core');
+const fs = require('fs');
 
 try {
   const environment = core.getInput('environment');
   const envCfgFile = core.getInput('env-config-file');
+  console.log('Working directory: ' + process.cwd());
   const config = require(envCfgFile);
   const vars = {};
   if (config) {
