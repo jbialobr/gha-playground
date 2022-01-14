@@ -30,7 +30,8 @@ jobs:
           env: ${{ env.ENVIRONMENT }}
 
       - uses: ./.github/actions/setup-env
-        env: INPUT_ENV: ${{ env.ENVIRONMENT }}
+        env:
+          INPUT_ENV: ${{ env.ENVIRONMENT }}
 
       - name: Use the value
         id: step_two
