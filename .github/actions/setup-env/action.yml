@@ -10,5 +10,6 @@ runs:
   steps:
     - name: Set the value
       id: step_one
+      shell: bash
       run: |
         echo "action_state=yellow" >> $GITHUB_ENV
