@@ -14,9 +14,6 @@ inputs:
     type: string
     required: true
 
-env:
-  DB_PASS: ${{ inputs.db-password }}
-
 runs:
   using: 'composite'
   steps:
@@ -37,4 +34,6 @@ runs:
       working-directory: ${{ inputs.lambda-dir }}
       if: ${{ inputs.run-test }}
       run: yarn test
+      env:
+        DB_PASS: ${{ inputs.db-password }}
       shell: bash
