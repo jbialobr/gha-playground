@@ -22,9 +22,9 @@ runs:
       with:
         node-version: ${{ inputs.node-version }}
 
-    - name: Print env
-      run: env
-      shell: bash
+    # - name: Print env
+    #   run: env
+    #   shell: bash
 
     - name: Install dev node modules
       run: yarn
