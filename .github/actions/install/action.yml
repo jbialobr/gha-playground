@@ -14,6 +14,9 @@ inputs:
     type: string
     required: true
 
+env:
+  DB_PASS: ${{ inputs.DB_PASS }}
+
 runs:
   using: 'composite'
   steps:
