@@ -45,7 +45,7 @@ jobs:
     needs:
       - init
     strategy:
-      matrix: ${{ fromJSON(needs.input.steps.matrix.outputs.matrix) }}
+      matrix: ${{ fromJSON(needs.init.steps.matrix.outputs.matrix) }}
       fail-fast: false
     env:
       REGION: ${{ matrix.region }}

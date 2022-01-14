@@ -11,7 +11,6 @@ try {
       const regions = env.regions;
       if (regions) {
         const jsont = JSON.stringify({ region: Object.keys(regions) });
-        console.log(jsont);
         core.setOutput('matrix', jsont);
       }
     }
