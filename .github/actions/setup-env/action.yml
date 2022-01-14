@@ -1,0 +1,14 @@
+name: 'Set up env'
+description: 'as above'
+inputs:
+  env:
+    type: string
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set the value
+      id: step_one
+      run: |
+        echo "action_state=yellow" >> $GITHUB_ENV

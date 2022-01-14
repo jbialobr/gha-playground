@@ -29,10 +29,10 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           env: ${{ env.ENVIRONMENT }}
 
-      - name: Set the value
-        id: step_one
-        run: |
-          echo "action_state=yellow" >> $GITHUB_ENV
+      - uses: ./.github/actions/setup-env
+        with:
+          env: ${{ env.ENVIRONMENT }}
+
       - name: Use the value
         id: step_two
         run: |
