@@ -11,10 +11,9 @@ env:
   REGION: eu-central-1
   ENVIRONMENT: stage
   TF_VERSION: 1.0.2
+  DB_USER: ${{ secrets.DB_PASS }}
 
 jobs:
-env:
-  DB_USER: ${{ secrets.DB_PASS }}
   deploy-edm:
     name: Deploy
     runs-on: ubuntu-latest
