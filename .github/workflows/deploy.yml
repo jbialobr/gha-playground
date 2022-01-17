@@ -1,7 +1,10 @@
 name: Master branch push workflow
 
-on:
-  workflow_call:
+on: workflow_call
+
+env:
+  NODE_VERSION: 12.x
+  ENVIRONMENT: stage
 
 jobs:
   init:
