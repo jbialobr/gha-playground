@@ -14,5 +14,63 @@ env:
   DB_USER: ${{ secrets.DB_PASS }}
 
 jobs:
+  init:
+    name: Init actions
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup node with dependency caching
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Install dev node modules
+        run: yarn
+        shell: bash
+
+      - name: Matrix
+        id: matrix
+        uses: ./.github/actions/region-matrix
+        with:
+          environment: ${{ env.ENVIRONMENT }}
+          env-config-file: ./src/env.json
+
   deploy:
-    uses: jbialobr/gha-playground/.github/workflows/deploy.yml@master
+    name: Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs:
+      - init
+    strategy:
+      matrix: ${{ fromJSON(needs.init.outputs.matrix) }}
+      fail-fast: false
+    env:
+      REGION: ${{ matrix.region }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - uses: ./.github/actions/install
+        with:
+          db-password: ${{ secrets.DB_PASS }}
+          node-version: ${{ env.NODE_VERSION }}
+          env: ${{ env.ENVIRONMENT }}
+
+      - uses: ./.github/actions/output-vars
+        with:
+          environment: ${{ env.ENVIRONMENT }}
+          env-config-file: ./src/env.json
+
+      - name: Use the value
+        id: step_two
+        run: |
+          echo "${{ env.ACCOUNT_ID }}"
+
+      - name: Print env
+        id: print
+        run: env
