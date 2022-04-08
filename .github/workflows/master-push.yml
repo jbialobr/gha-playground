@@ -93,4 +93,6 @@ jobs:
                     prerelease: false,
                     body: 'Released by ${{ github.actor }}',
                 });
-            } catch {}
+            } catch {
+              return;
+            }
