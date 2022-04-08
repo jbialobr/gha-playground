@@ -85,7 +85,7 @@ jobs:
         with:
           script: |
             try {
-                github.rest.repos.createRelease({
+                await github.rest.repos.createRelease({
                     owner: context.repo.owner,
                     repo: context.repo.repo,
                     tag_name: 'v${{ github.run_number }}',
