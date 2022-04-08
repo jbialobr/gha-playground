@@ -74,3 +74,23 @@ jobs:
       - name: Print env
         id: print
         run: env
+
+  gh-release:
+    name: Create github release [${{ inputs.ENVIRONMENT }}]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Create github release
+        uses: actions/github-script@v5
+        with:
+          script: |
+            try {
+                github.rest.repos.createRelease({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    tag_name: 'v${{ github.run_number }}',
+                    target_commitish: '${{ github.sha }}',
+                    prerelease: false,
+                    body: 'Released by ${{ github.actor }}',
+                });
+            } catch {}
