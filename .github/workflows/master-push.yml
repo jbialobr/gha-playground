@@ -69,7 +69,7 @@ jobs:
       - name: Use the value
         id: step_two
         env:
-          fileOption: 'jeden'
+          fileOption: ${{ (env.REGION == '' && '') || format('-f {0}', env.REGION) }}
         run: |
           echo "${{ env.fileOption }}"
 
