@@ -68,8 +68,10 @@ jobs:
 
       - name: Use the value
         id: step_two
+        env:
+          fileOption: 'jeden'
         run: |
-          echo "${{ env.ACCOUNT_ID }}"
+          echo "${{ env.fileOption }}"
 
       - name: Print env
         id: print
